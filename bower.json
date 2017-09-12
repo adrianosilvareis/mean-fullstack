@@ -1,0 +1,17 @@
+{
+  "name": "contato",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Adriano Reis <adriano_silvareis@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
