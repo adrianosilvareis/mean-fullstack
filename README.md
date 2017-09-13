@@ -1,5 +1,9 @@
-MEAN FullStack Javascript
+# MEAN FullStack Javascript
 
-Versões #1
+|  Versoes   | Aula | Parte |
+| -----------|:----:| -----:|
+| #1         |   1  | Total |
+| #2.1       |   2  |   1   |
+| #2.2       |   2  |   2   |
 
 @autor: Adriano Reis
