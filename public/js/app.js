@@ -1,1 +1,1 @@
-angular.module("agenda", [])
+angular.module("agenda", ['ngRoute'])
