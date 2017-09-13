@@ -1,6 +1,7 @@
-const controller = require('../controllers/index')()
-
 module.exports = (app) => {
+
+  const controller = app.controllers.index
+
   app.get('/index', controller.index)
   app.get('/', controller.index)
 }

@@ -1,6 +1,5 @@
 const express = require('express')
-
-const home = require('../app/routes/index')
+const load = require('express-load')
 
 module.exports = () =>{
   let app = express()
@@ -13,7 +12,10 @@ module.exports = () =>{
   //midlewares
   app.use(express.static('./public'))
 
-  home(app)
+  load('models', {cwd: 'app'})
+    .then('controllers')
+    .then('routes')
+    .into(app)
 
   return app
 }
