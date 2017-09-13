@@ -1,0 +1,27 @@
+{
+  "name": "contato",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Adriano Reis <adriano_silvareis@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/adrianosilvareis/mean-fullstack",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1",
+  "_resolution": {
+    "type": "tag",
+    "tag": "1",
+    "commit": "c4f81c8550fb9601caa82bb9af74ccc11c7e936e"
+  },
+  "_source": "https://github.com/adrianosilvareis/mean-fullstack.git",
+  "_target": "1",
+  "_originalSource": "programaker-mean",
+  "_direct": true
+}
