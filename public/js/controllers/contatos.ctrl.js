@@ -1,20 +1,29 @@
 angular.module('agenda')
-  .controller('contatosCtrl', ["$scope", contatosCtrl])
+  .controller('contatosCtrl', ["$scope", "$http", contatosCtrl])
 
-  function contatosCtrl($scope){
+  function contatosCtrl($scope, $http){
     $scope.title = "Contatos"
-
     $scope.contato = {}
     $scope.contatos = []
 
-    $scope.adicionar = (contato) => {
-      $scope.contatos.push(angular.copy(contato))
-      delete $scope.contato
+    $scope.remover = (contato) => {
+      $http.delete("contatos/" + contato._id)
+        .then(carregarContatos, error)
     }
 
-    $scope.remover = (contato) => {
-      // forma reduzida de uma arrow function
-      // cont => cont != contato
-      $scope.contatos = $scope.contatos.filter(cont => cont != contato )
+    let carregarContatos = () =>{
+      $http.get('/contatos')
+        .then(success, error)
     }
+
+    function success(contatos){
+      $scope.contatos = contatos.data
+    }
+
+    function error(error){
+      $scope.message = {text: "Erro ao carregar contatos", error: error}
+    }
+
+    carregarContatos()
+
   }

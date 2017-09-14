@@ -3,4 +3,6 @@ module.exports = (app) => {
 
   app.get('/contatos', controller.listarContatos)
   app.get('/contatos/:id', controller.obterContato)
+
+  app.delete('/contatos/:id', controller.removerContato)
 }
