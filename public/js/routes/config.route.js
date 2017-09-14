@@ -18,4 +18,10 @@ function minhasFortas($routeProvider, $locationProvider){
     controller: "contatoCtrl"
   })
 
+  $routeProvider.when('/contato/:id', {
+    templateUrl: "partials/contato.html",
+    controller: "contatoCtrl"
+  })
+
+  $routeProvider.otherwise({ redirectTo: "/contatos" })
 }

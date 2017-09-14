@@ -1,7 +1,15 @@
-<!-- <div class="form form-inline">
-  <button class="btn btn-primary" ng-click="adicionar(contato)" ng-disabled="!contato.nome">Novo Contato</button>
+<div class="form">
+  <h1>Contato <span  class="small text-muted" ng-show="contato.id">#{{ contato.id }}</span> <span class="small text-muted" ng-show='contato.message'>{{ contato.message }}</span></h1>
+  <hr>
   <div class="form-group">
     <label for="nome">Nome</label>
     <input class="form-control" type="text" name="nome" placeholder="Nome completo" ng-model="contato.nome">
   </div>
-</div> -->
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" type="text" name="email" placeholder="Email" ng-model="contato.email">
+  </div>
+
+  <!-- <button class="btn btn-primary" ng-click="salvar(contato)" ng-disabled="!contato.nome">Novo Contato</button> -->
+  <button class="btn btn-primary" ng-disabled="!contato.nome">Novo Contato</button>
+</div>
