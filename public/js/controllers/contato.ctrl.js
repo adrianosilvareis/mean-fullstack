@@ -1,23 +1,19 @@
 angular.module('agenda')
-  .controller('contatoCtrl', ["$scope","$routeParams", contatoCtrl])
+  .controller('contatoCtrl', ["$scope","$routeParams", "$http", contatoCtrl])
 
-  function contatoCtrl($scope, $routeParams){
-    let contatos = [
-      {id: 1, nome: 'contato 1', email:'cont1@email.com'},
-      {id: 2, nome: 'contato 2', email:'cont2@email.com'},
-      {id: 3, nome: 'contato 3', email:'cont3@email.com'},
-      {id: 4, nome: 'contato 4', email:'cont4@email.com'},
-      {id: 5, nome: 'contato 5', email:'cont5@email.com'}
-    ]
+  function contatoCtrl($scope, $routeParams, $http){
 
-    $scope.contato = {}
-
-    let init = (idContato) => {
-      let contato = {}
-      idContato ? contato = contatos.filter(contato => contato.id == idContato)[0] : contato = {message: "Novo Contato"}
-
-      $scope.contato = contato
+    $scope.salvar = (contato) => {
+      $http.post('/contatos', contato)
+        .then(success, error)
     }
 
-    init($routeParams.id)
+    function success(success){
+      console.log(success)
+    }
+
+    function error(error){
+      console.log("Error", error)
+    }
+    
   }

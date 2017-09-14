@@ -9,6 +9,7 @@ module.exports = (app) => {
     {_id: 5, nome: 'contato 5', email: 'cont5@email.com'},
     {_id: 6, nome: 'contato 6', email: 'cont6@email.com'}
   ]
+  
   controller.listarContatos = (req, res, next) => {
       res.json(contatos)
   }
@@ -26,6 +27,12 @@ module.exports = (app) => {
     contatos = contatos.filter(contato => idContato != contato._id)
 
     res.end()
+  }
+
+  controller.salvarContato = (req, res, next) =>{
+    console.log(req.body)
+
+    res.send('OK')
   }
 
   return controller

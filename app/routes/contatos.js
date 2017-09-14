@@ -1,8 +1,12 @@
 module.exports = (app) => {
   let controller = app.controllers.contatos
 
-  app.get('/contatos', controller.listarContatos)
-  app.get('/contatos/:id', controller.obterContato)
+  app.route('/contatos')
+    .get(controller.listarContatos)
+    .post(controller.salvarContato)
 
-  app.delete('/contatos/:id', controller.removerContato)
+  app.route('/contatos/:id')
+    .get(controller.obterContato)
+    .delete(controller.removerContato)
+    
 }
