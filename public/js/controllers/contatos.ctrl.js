@@ -1,8 +1,10 @@
 angular.module('agenda')
-  .controller('contatosCtrl', ["$scope", "$http", "$resource", contatosCtrl])
+  .controller('contatosCtrl', ["$scope", "$resource", contatosCtrl])
 
-  function contatosCtrl($scope, $http, $resource){
+  function contatosCtrl($scope, $resource){
 
+    // $http deixou de ser utilizado
+    
     const Contatos = $resource("/contatos/:id")
 
     $scope.title = "Contatos"

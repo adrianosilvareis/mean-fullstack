@@ -20,7 +20,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="contato in contatos">
-      <td>{{ contato.nome }}</td>
+      <td><a href="#/contato/{{ contato._id }}">{{ contato.nome }}</a></td>
       <td>{{ contato.email }}</td>
       <td>
         <button class="btn btn-warning" ng-click="remover(contato)">DELETAR</button>
