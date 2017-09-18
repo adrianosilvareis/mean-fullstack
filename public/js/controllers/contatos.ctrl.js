@@ -4,8 +4,14 @@ angular.module('agenda')
   function contatosCtrl($scope, $resource){
 
     // $http deixou de ser utilizado
-    
+
     const Contatos = $resource("/contatos/:id")
+
+    /*
+    **********************************************
+    ****************** Public ********************
+    **********************************************
+    */
 
     $scope.title = "Contatos"
     $scope.contato = {}
@@ -16,6 +22,11 @@ angular.module('agenda')
       Contatos.delete({id: contato._id}, carregarContatos, error)
     }
 
+    /*
+    **********************************************
+    ****************** Private *******************
+    **********************************************
+    */
     let carregarContatos = () =>{
       // $http.get('/contatos').then(success, error)
       Contatos.query(success, error)

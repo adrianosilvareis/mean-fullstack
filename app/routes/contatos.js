@@ -8,5 +8,4 @@ module.exports = (app) => {
   app.route('/contatos/:id')
     .get(controller.obterContato)
     .delete(controller.removerContato)
-    
 }

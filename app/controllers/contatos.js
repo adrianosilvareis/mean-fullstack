@@ -1,7 +1,13 @@
 module.exports = (app) => {
   let controller = {}
 
-  // simula objeto vindo do banco
+  /*
+  *********************************************
+  ******** Simulação do banco de dados ********
+  *********************************************
+  */
+
+  // Dados
   let contatos = [
     {_id: 1, nome: 'contato 1', email: 'cont1@email.com'},
     {_id: 2, nome: 'contato 2', email: 'cont2@email.com'},
@@ -11,7 +17,7 @@ module.exports = (app) => {
     {_id: 6, nome: 'contato 6', email: 'cont6@email.com'}
   ]
 
-  // simula autoincremento do id
+  // AUTOINCREMENTO do id
   let _id = 6
 
   // filtra os dados recebidos para garantir a segurança do sistema
@@ -25,6 +31,11 @@ module.exports = (app) => {
     return contatoFiltrado
   }
 
+  /*
+  *********************************************
+  ************ metodos publicos ***************
+  *********************************************
+  */
   controller.listarContatos = (req, res, next) => {
     res.json(contatos)
   }
@@ -56,6 +67,12 @@ module.exports = (app) => {
     res.json(contato)
   }
 
+  /*
+     ****************************************
+     ********** metodos privados ************
+     ****************************************
+  */
+
   let atualizar = (contatoAlterar) => {
     // arrow function: (obj) => {função}  || operador ternário  ( condição ? true : false )
     contatos = contatos.map( contato => (contato._id == contatoAlterar._id ? contatoAlterar : contato))
@@ -65,7 +82,7 @@ module.exports = (app) => {
     contatoNovo._id = ++_id
 
     contatoNovo = filtrarDados(contatoNovo)
-    
+
     contatos.push(contatoNovo)
 
     return contatoNovo
