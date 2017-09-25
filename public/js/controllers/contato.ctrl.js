@@ -1,10 +1,7 @@
 angular.module('agenda')
-  .controller('contatoCtrl', ["$scope","$routeParams", "$resource", contatoCtrl])
+  .controller('contatoCtrl', ["$scope","$routeParams", "Contato", contatoCtrl])
 
-  function contatoCtrl($scope, $routeParams, $resource){
-
-    // $http deixou de ser utilizado
-    const Contato = $resource("/contatos/:id")
+  function contatoCtrl($scope, $routeParams, Contato){
 
     /*
     **********************************************
@@ -28,7 +25,7 @@ angular.module('agenda')
     ****************** Private *******************
     **********************************************
     */
-    
+
     // verifica se existe parametro
     let init = (_id) => {
       _id ?

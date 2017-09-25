@@ -1,11 +1,7 @@
 angular.module('agenda')
-  .controller('contatosCtrl', ["$scope", "$resource", contatosCtrl])
+  .controller('contatosCtrl', ["$scope", "Contato", contatosCtrl])
 
-  function contatosCtrl($scope, $resource){
-
-    // $http deixou de ser utilizado
-
-    const Contatos = $resource("/contatos/:id")
+  function contatosCtrl($scope, Contatos){
 
     /*
     **********************************************
