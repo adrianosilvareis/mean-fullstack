@@ -15,5 +15,15 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label for="emergencia">Emergência</label>
+    <select name="emergencia" id="emergencia" class="form-control" 
+      ng-model="contato.emergencia"
+      ng-options="contato._id as contato.nome for contato in contatos">
+      <option value="">Selecione um contato de emergência</option>
+    </select>
+  </div>
+
   <button type="submit" class="btn btn-primary" ng-disabled="!contato.nome">Enviar</button>
+  <a href="#/contatos" class="btn btn-default">Listar Contatos</a>
 </form>

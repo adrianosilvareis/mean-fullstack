@@ -1,35 +1,6 @@
 module.exports = (app) => {
-  let controller = {}
-
-  /*
-  *********************************************
-  ******** Simulação do banco de dados ********
-  *********************************************
-  */
-
-  // Dados
-  let contatos = [
-    {_id: 1, nome: 'contato 1', email: 'cont1@email.com'},
-    {_id: 2, nome: 'contato 2', email: 'cont2@email.com'},
-    {_id: 3, nome: 'contato 3', email: 'cont3@email.com'},
-    {_id: 4, nome: 'contato 4', email: 'cont4@email.com'},
-    {_id: 5, nome: 'contato 5', email: 'cont5@email.com'},
-    {_id: 6, nome: 'contato 6', email: 'cont6@email.com'}
-  ]
-
-  // AUTOINCREMENTO do id
-  let _id = 6
-
-  // filtra os dados recebidos para garantir a segurança do sistema
-  let filtrarDados = contato => {
-    let contatoFiltrado = {
-      _id: contato._id,
-      nome: contato.nome,
-      email: contato.email
-    }
-
-    return contatoFiltrado
-  }
+  const controller = {}
+  const Contato = app.models.contatos
 
   /*
   *********************************************
@@ -37,55 +8,46 @@ module.exports = (app) => {
   *********************************************
   */
   controller.listarContatos = (req, res, next) => {
-    res.json(contatos)
+    Contato.find().populate('emergencia').exec()
+      .then((contatos) => res.json(contatos))
+      .catch((err) => res.status(500).json(err))
   }
 
   controller.obterContato = (req, res, next) => {
-    let idContato = req.params.id
-    let contato = contatos.filter(contato => contato._id == idContato)[0]
-
-    contato
-      ? res.json(contato)
-      : res.status(404).send("Contato não encontrado")
+    let _id = req.params.id
+    Contato.findById(_id).exec()
+      .then((contato) => {
+        if(!contato) throw Erro("Contato não encontrado")
+        res.json(contato)
+      })
+      .catch((err) => res.status(500).json(err))
   }
 
   controller.removerContato = (req, res, next) => {
-    let idContato = req.params.id
-
-    contatos = contatos.filter(contato => idContato != contato._id)
-
-    res.end()
+    let _id = req.params.id
+    
+    Contato.remove({ "_id": _id })
+      .then(() => res.end())
+      .catch((err) => console.log(err))
   }
 
   controller.salvarContato = (req, res, next) => {
-    let contato = req.body
+    req.body.emergencia = req.body.emergencia || null
 
-    contato._id
-      ? atualizar(contato)
-      : adicionar(contato)
+    let contatoToSave = req.body
 
-    res.json(contato)
-  }
-
-  /*
-     ****************************************
-     ********** metodos privados ************
-     ****************************************
-  */
-
-  let atualizar = (contatoAlterar) => {
-    // arrow function: (obj) => {função}  || operador ternário  ( condição ? true : false )
-    contatos = contatos.map( contato => (contato._id == contatoAlterar._id ? contatoAlterar : contato))
-  }
-
-  let adicionar = (contatoNovo) => {
-    contatoNovo._id = ++_id
-
-    contatoNovo = filtrarDados(contatoNovo)
-
-    contatos.push(contatoNovo)
-
-    return contatoNovo
+    if(contatoToSave._id){
+      //atualizar
+      Contato.findByIdAndUpdate(contatoToSave._id, contatoToSave)
+        .exec()
+        .then((contato) => res.json(contatoToSave))
+        .catch((err) => res.status(500).json(err))
+    }else{
+      //salvar novo
+      Contato.create(contatoToSave)
+        .then((contato) => res.status(201).json(contato))
+        .catch((err) => res.status(500).json(err))
+    }
   }
 
   return controller

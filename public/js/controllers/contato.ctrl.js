@@ -28,6 +28,8 @@ angular.module('agenda')
 
     // verifica se existe parametro
     let init = (_id) => {
+      carregarContatos()
+
       _id ?
         carregaContato(_id) :
         novoContato()
@@ -55,6 +57,13 @@ angular.module('agenda')
     function novoContato(){
       $scope.contato = new Contato()
       $scope.contato.message = "Novo contato"
+    }
+
+    let carregarContatos = () =>{
+      // $http.get('/contatos').then(success, error)
+      Contato.query((contatos) => {
+        $scope.contatos = contatos
+      }, error)
     }
 
     init($routeParams.id)

@@ -1,6 +1,6 @@
 const http = require('http')
-
-let app = require('./config/express')()
+const app = require('./config/express')()
+require('./config/database.js')('mongodb://localhost:27017/contato')
 
 http.createServer(app).listen(app.get('port'), ()=> {
     console.log('Escutando na porta ' + app.get('port'))
