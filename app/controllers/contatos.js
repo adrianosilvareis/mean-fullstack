@@ -38,9 +38,9 @@ module.exports = (app) => {
 
     if(contatoToSave._id){
       //atualizar
-      Contato.findByIdAndUpdate(contatoToSave._id, contatoToSave)
+      Contato.findByIdAndUpdate(contatoToSave._id, contatoToSave, { new: true })
         .exec()
-        .then((contato) => res.json(contatoToSave))
+        .then((contato) => res.json(contato))
         .catch((err) => res.status(500).json(err))
     }else{
       //salvar novo
